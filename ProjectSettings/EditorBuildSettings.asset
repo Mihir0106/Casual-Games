@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Rope_Untangle.unity
+    guid: e285a63139e48e445aaa770922ea9b2a
   m_configObjects: {}
