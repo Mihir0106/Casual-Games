@@ -15,7 +15,7 @@ namespace Rope_Untangle
 
         private void OnMouseDown()
         {
-            if(_gameManager._midAirRope == null)
+            if(_gameManager.midAirRope == null)
             {
                 _gameManager.MoveUp(gameObject);
                 inAir = true;

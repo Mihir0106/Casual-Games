@@ -1,59 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RopeSpawn : MonoBehaviour
+namespace Rope_Untangle.Unused.Rope
 {
-
-    [SerializeField] GameObject partPrefab, parentObject;
-    [SerializeField] [Range(1, 1000)] int length = 1;
-    [SerializeField] float partDistance = 0.21f;
-
-    [SerializeField] bool reset, spawn, snapFirst, snaplast;
-
-    // Start is called before the first frame update
-    void Start()
+    public class RopeSpawn : MonoBehaviour
     {
+        [SerializeField] private GameObject[] starting;
+        [SerializeField] private GameObject[] ending;
 
-    }
+        [SerializeField] GameObject partPrefab, parentObject;
+        [SerializeField] [Range(1, 1000)] int length = 1;
+        [SerializeField] float partDistance = 0.21f;
 
-// Update is called once per frame
-    void Update()
-    {
-        if (reset)
+        [SerializeField] private bool reset, spawn;
+
+
+        // Update is called once per frame
+        void Update()
         {
-            foreach (GameObject tmp in GameObject.FindGameObjectsWithTag("Player"))
+            if (reset)
             {
-                Destroy(tmp);
+                foreach (GameObject tmp in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    Destroy(tmp);
+                }
+
+                reset = false;
             }
 
-            reset = false;
+            if (spawn)
+            {
+                Spawn(starting[0],ending[0]);
+                spawn = false;
+            }
         }
 
-        if (spawn)
+        public void Spawn(GameObject start,GameObject end)
         {
-            Spawn();
-            spawn = false;
-        }
-    }
-
-    public void Spawn()
-    {
-        int count = (int)(length / partDistance);
-        for (int x = 0; x < count; x++)
-        {
-            GameObject tmp;
-            tmp = Instantiate(partPrefab,
-                    new Vector3(transform.position.x, transform.position.y + partDistance * (x + 1), transform.position.z), 
+            var startingPos = start.transform;
+            int count = (int)(length / partDistance);
+            for (int x = 0; x < count; x++)
+            {
+                GameObject tmp;
+                var position = startingPos.position;
+                tmp = Instantiate(partPrefab,
+                    new Vector3(position.x, transform.position.y + partDistance * (x + 1), position.z),
                     Quaternion.identity, parentObject.transform);
-            tmp.transform.eulerAngles = new Vector3(180, 0, 0);
+                tmp.transform.eulerAngles = new Vector3(180, 0, 0);
+
+                tmp.name = parentObject.transform.childCount.ToString();
+                if (x == 0)
+                    Destroy(tmp.GetComponent<CharacterJoint>());
+                else
+                    tmp.GetComponent<CharacterJoint>().connectedBody = parentObject.transform
+                        .Find((parentObject.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
+            }
             
-            tmp.name = parentObject.transform.childCount.ToString();
-            if (x == 0)
-                Destroy(tmp.GetComponent<CharacterJoint>());
-            else
-                tmp.GetComponent<CharacterJoint>().connectedBody = parentObject.transform
-                    .Find((parentObject.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
         }
     }
 }

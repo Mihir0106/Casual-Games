@@ -21,7 +21,7 @@ namespace Rope_Untangle
 
         public GameObject[] ropes;
         public List<Places> places;
-        public GameObject _midAirRope = null;
+        public GameObject midAirRope;
         
         [SerializeField] private float timeToMove = 0.5f;
     
@@ -53,25 +53,25 @@ namespace Rope_Untangle
             StartCoroutine(Move(curr, positions[n].transform,positions[n+1].transform));
             currRope.currentPos = n + 1;
             currRope.PrintCurrentPos();
-            _midAirRope = curr;
+            midAirRope = curr;
             places[n/2].place.UpdateStatus(false);
         }
         
         // Method that is responsible to Move Rope down
         public void MoveDown()
         {
-            var currRope = _midAirRope.GetComponent<Rope>();
+            var currRope = midAirRope.GetComponent<Rope>();
             int n = currRope.currentPos;
-            StartCoroutine(Move(_midAirRope, positions[n].transform,positions[n-1].transform));
+            StartCoroutine(Move(midAirRope, positions[n].transform,positions[n-1].transform));
             currRope.currentPos = n - 1;
             currRope.PrintCurrentPos();
             places[(n-1)/2].place.UpdateStatus(true);
-            _midAirRope = null;
+            midAirRope = null;
         }
 
         public void Move(int destiny)
         {
-            GameObject rope = _midAirRope;
+            GameObject rope = midAirRope;
             var currRope = rope.GetComponent<Rope>();
             int currCoord = currRope.currentPos;
             int endCoords = destiny;
@@ -86,7 +86,7 @@ namespace Rope_Untangle
                 currRope.PrintCurrentPos();
             }
             places[destiny/2].place.UpdateStatus(true);
-            _midAirRope = null;
+            midAirRope = null;
         }
 
         //Print path

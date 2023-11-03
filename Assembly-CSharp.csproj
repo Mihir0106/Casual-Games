@@ -44,11 +44,11 @@
      <Compile Include="Assets/Scripts/Rope_Untangle/Unused/MeshDataRope.cs" />
      <Compile Include="Assets/Scripts/Rope_Untangle/Unused/DragAndDrop.cs" />
      <Compile Include="Assets/Scripts/DownloadAssetBundleSimpleWay.cs" />
-     <Compile Include="Assets/Scripts/Rope_Untangle/Unused/Rope/RopeSpawn.cs" />
-     <Compile Include="Assets/Scripts/Rope_Untangle/Unused/Wire.cs" />
      <Compile Include="Assets/Scripts/Rope_Untangle/RU_GameManager.cs" />
-     <Compile Include="Assets/Scripts/Rope_Untangle/Rope.cs" />
+     <Compile Include="Assets/Scripts/Rope_Untangle/Unused/Rope/RopeSpawn.cs" />
      <Compile Include="Assets/Scripts/Rope_Untangle/PlaceableCoords.cs" />
+     <Compile Include="Assets/Scripts/Rope_Untangle/Rope.cs" />
+     <Compile Include="Assets/Scripts/Rope_Untangle/Unused/Wire.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Prefabs" />
      <Folder Include="Assets/Scripts/Rope_Untangle" />

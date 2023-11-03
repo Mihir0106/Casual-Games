@@ -624,19 +624,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686207109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 361b12c09e16b41ccb0c05df7c016dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starting:
+  - {fileID: 1628272519}
+  ending:
+  - {fileID: 0}
   partPrefab: {fileID: 8251194440606070870, guid: 0fae8ee74879f4899a5d7de7b25079d8, type: 3}
   parentObject: {fileID: 1378979209}
   length: 5
   partDistance: 0.21
   reset: 0
   spawn: 0
-  snapFirst: 0
-  snaplast: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +780,7 @@ MonoBehaviour:
     place: {fileID: 506850559}
   - coord: 5
     place: {fileID: 965589715}
-  _midAirRope: {fileID: 0}
+  midAirRope: {fileID: 0}
   timeToMove: 1
 --- !u!4 &861285540
 Transform:
@@ -1321,7 +1323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378979209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0035291, y: 1.6501454, z: -0.054023493}
+  m_LocalPosition: {x: -0.99, y: 1.72, z: -0.054023493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
