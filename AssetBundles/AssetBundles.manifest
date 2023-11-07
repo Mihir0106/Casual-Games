@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 3404222791
+CRC: 470156599
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: cubeprefab
+      Dependencies: {}
+    Info_1:
+      Name: ropes
       Dependencies: {}

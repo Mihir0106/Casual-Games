@@ -298,10 +298,16 @@
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/Rope_Untangle/DragAndDrop.cs"
-"Assets/Scripts/Rope_Untangle/MeshDataRope.cs"
-"Assets/Scripts/Rope_Untangle/Rope/RopeSpawn.cs"
-"Assets/Scripts/Rope_Untangle/Wire.cs"
+"Assets/Scripts/DownloadAssetBundleSimpleWay.cs"
+"Assets/Scripts/Rope_Untangle/Block.cs"
+"Assets/Scripts/Rope_Untangle/BlockAssign.cs"
+"Assets/Scripts/Rope_Untangle/PlaceableCoords.cs"
+"Assets/Scripts/Rope_Untangle/Rope.cs"
+"Assets/Scripts/Rope_Untangle/RU_GameManager.cs"
+"Assets/Scripts/Rope_Untangle/Unused/DragAndDrop.cs"
+"Assets/Scripts/Rope_Untangle/Unused/MeshDataRope.cs"
+"Assets/Scripts/Rope_Untangle/Unused/Rope/RopeSpawn.cs"
+"Assets/Scripts/Rope_Untangle/Unused/Wire.cs"
 -langversion:9.0
 
 /deterministic

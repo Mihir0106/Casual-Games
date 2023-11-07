@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 933049829
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d898c331b312bc51795016c34e822756
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f5dda2aa174a8a68271a79dfbb6d84d8
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 68a76df1a7dfa4aab808c76cdbf03bd1, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 144
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundlesWanted/Rope (1).prefab
+- Assets/AssetBundlesWanted/Rope (2).prefab
+Dependencies: []

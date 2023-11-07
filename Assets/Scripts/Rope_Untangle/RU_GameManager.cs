@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Rope_Untangle
 {
@@ -19,7 +19,7 @@ namespace Rope_Untangle
         readonly Dictionary<GameObject, List<GameObject>> _adjacencyList = new Dictionary<GameObject, List<GameObject>>();
         public GameObject[] positions;
 
-        public GameObject[] ropes;
+        [SerializeField] private List<GameObject> ropes;
         public List<Places> places;
         public GameObject midAirRope;
         
@@ -37,10 +37,23 @@ namespace Rope_Untangle
             AddEdge(positions[3],positions[4]);
             AddEdge(positions[4],positions[6]);
             AddEdge(positions[5],positions[6]);
+
+            StartCoroutine(AssignRopes());
             
-            for(int i=0;i<ropes.Length;i++)
+        }
+
+
+        private void Update()
+        {
+            
+        }
+
+        IEnumerator AssignRopes()
+        {
+            yield return StartCoroutine(DownLoadAssetBundleFromServer("https://drive.google.com/uc?export=download&id=1YW3FKCrbnRPPpoRD0RNp1H7d9o-zeTEK"));
+            
+            for(int i=0;i<ropes.Count;i++)
             {
-                //ropes[i].transform.position = positions[i+1].transform.position;
                 places[i].place.UpdateStatus(true);
             }
         }
@@ -69,6 +82,7 @@ namespace Rope_Untangle
             midAirRope = null;
         }
 
+        // Move method to move from current to Destiny 
         public void Move(int destiny)
         {
             GameObject rope = midAirRope;
@@ -156,7 +170,7 @@ namespace Rope_Untangle
             }
         }
         
-        // Move Coroutine between ode Current to another (Given Node)
+        // Move Coroutine between Current to another (Given Node)
         IEnumerator Move(GameObject node,Transform starting, Transform ending)
         {
             float t = 0;
@@ -167,7 +181,6 @@ namespace Rope_Untangle
                 yield return new WaitForEndOfFrame();
             }
             node.transform.position = ending.position;
-            yield return new Null();
         }
     
         // Function to add an edge (undirected)
@@ -187,5 +200,67 @@ namespace Rope_Untangle
             _adjacencyList[nodeB].Add(nodeA);
         }
         
+        // ReSharper disable Unity.PerformanceAnalysis
+        IEnumerator DownLoadAssetBundleFromServer(string url)
+        {
+            // Link Format :  "MyServer/MyAssetBundle/myGameObject"
+            //string url = "https://drive.google.com/uc?export=download&id=1YW3FKCrbnRPPpoRD0RNp1H7d9o-zeTEK";
+            using (UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(url))
+            {
+                yield return www.SendWebRequest();
+                if (www.result == UnityWebRequest.Result.ConnectionError ||
+                    www.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogWarning("Error on the get request at" + url + " " + www.error);
+                }
+                else
+                {
+                    AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(www);
+                    LoadAndInstantiateAllAssetsFromBundle(bundle);
+                    bundle.Unload(false);
+                        
+                        
+                    yield return new WaitForEndOfFrame();
+                }
+                www.Dispose();
+            }
+        }
+
+        void LoadAndInstantiateAllAssetsFromBundle(AssetBundle bundle)
+        {
+            if (bundle != null)
+            {
+                string[] assetNames = bundle.GetAllAssetNames();
+                foreach (string assetName in assetNames)
+                {
+                    GameObject go = bundle.LoadAsset(assetName) as GameObject;
+                    if (go != null)
+                    {
+                        InstantiateGameObjectFromAssetBundle(go);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Failed to load asset: " + assetName);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Asset Bundle is null.");
+            }
+        }
+            
+        void InstantiateGameObjectFromAssetBundle(GameObject go)
+        {
+            if(go != null)
+            {
+                GameObject temp = Instantiate(go);
+                ropes.Add(temp);
+            }
+            else
+            {
+                Debug.LogWarning("your asset bundle gameObject go is null");
+            }
+        }
     }
 }

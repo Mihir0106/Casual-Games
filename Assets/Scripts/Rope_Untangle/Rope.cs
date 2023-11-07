@@ -7,6 +7,8 @@ namespace Rope_Untangle
         public int currentPos;
         public bool inAir;
         private RU_GameManager _gameManager;
+        [SerializeField] private int startingBlock;
+        [SerializeField] private int endingBlock;
         
         private void Start()
         {

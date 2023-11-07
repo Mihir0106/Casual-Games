@@ -34,6 +34,7 @@ namespace Rope_Untangle.Unused.Rope
             }
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Spawn(GameObject start,GameObject end)
         {
             var startingPos = start.transform;
